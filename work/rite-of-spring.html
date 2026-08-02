@@ -1,0 +1,170 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Rite of Spring — synthetic art installation | EVESTRUM</title>
+<meta name="description" content="Rite of Spring: an interactive synthetic-art installation on AI bias and the represented body. TouchDesigner, Stream Diffusion and hand tracking. Emanuele Musca / Evestrum_AV.">
+<link rel="canonical" href="https://evestrum-av.github.io/work/rite-of-spring.html">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Rite of Spring — synthetic art installation">
+<meta property="og:description" content="Do androids dream of cultural stereotypes? An interactive installation on AI bias and the represented body.">
+<meta property="og:image" content="https://evestrum-av.github.io/assets/img/ros-04-1800.jpg">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="icon" href="../assets/evestrum-mark.svg" type="image/svg+xml">
+<link rel="icon" href="../favicon-32.png" sizes="32x32">
+<link rel="apple-touch-icon" href="../apple-touch-icon.png">
+<meta name="theme-color" content="#08090a">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=Inter:wght@400;450;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../assets/css/main.css">
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+
+<nav class="nav">
+  <div class="wrap">
+    <a class="brand" href="../index.html" aria-label="EVESTRUM — home">
+      <img src="../assets/evestrum-mark.svg" alt="" width="24" height="24">
+      <b>Evestrum</b>
+    </a>
+    <div class="nav-links">
+      <a href="../index.html#work">Work</a>
+      <a href="../index.html#archive" data-opt>Archive</a>
+      <a href="../index.html#about">About</a>
+      <a href="../index.html#contact">Contact</a>
+    </div>
+  </div>
+</nav>
+
+<main id="main">
+
+<header class="case-hero">
+  <div class="hero-media">
+    <img src="../assets/img/ros-05-1800.jpg" alt="" aria-hidden="true" style="width:100%;height:100%;object-fit:cover">
+  </div>
+  <div class="wrap">
+    <span class="mono case-kicker">002 — Interactive installation</span>
+    <h1>Rite of Spring</h1>
+    <p class="lede dim" style="margin-bottom:32px">Do androids dream of cultural stereotypes?</p>
+    <div class="case-meta mono">
+      <div><span>Year</span><b>2024</b></div>
+      <div><span>My role</span><b>Concept, development, realisation</b></div>
+      <div><span>Type</span><b>Synthetic art · real-time · interactive</b></div>
+      <div><span>Shown at</span><b>KHROMA · Aura Labs, Berlin</b></div>
+    </div>
+  </div>
+</header>
+
+<section class="section">
+  <div class="wrap case-body">
+    <div class="prose rv">
+      <p>Rite of Spring explores the interplay between artificial intelligence, cultural bias and the representation of the human form — observed through the lens of ballet, an art form historically dominated by the idealised female body.</p>
+
+      <p>The AI is prompted with a generic term: <em>dancer</em>. Yet the system persistently renders the subject as a feminine body, even as human interaction forces sudden change. This underlines the bias embedded in the data used to train these systems: it is impossible to escape societal norms and stereotypes, despite gender-neutral input.</p>
+
+      <p>Visitors control an evolving layer of points in space, generated in Derivative TouchDesigner. A Stream Diffusion instance scans the shape and translates it, in real time, into a continuously moving and transforming dancer.</p>
+
+      <p>As in Stravinsky's <em>Rite of Spring</em>, this dancer is a prisoner of a superimposed role — dancing until its death, or in this case, until the system shuts down.</p>
+    </div>
+
+    <div class="rv">
+      <ul class="spec">
+        <li><b>Engine</b>Derivative TouchDesigner — generative point-cloud patch</li>
+        <li><b>Model</b>Local Stable Diffusion / Stream Diffusion, real-time img2img</li>
+        <li><b>Input</b>Hand tracking — position, rotation, open/closed grip</li>
+        <li><b>Output</b>Two synchronised displays: the raw geometry and the AI's reading of it</li>
+        <li><b>Component</b>TouchDesigner component by Lyell Hintz (@dotsimulate)</li>
+      </ul>
+
+      <p class="mono faint" style="margin:34px 0 12px">Concept notes</p>
+      <div class="prose" style="font-size:15px">
+        <p style="font-size:15px;color:var(--fg-dim);line-height:1.6;margin-bottom:.9em">A silent will lies in the machine. It keeps dreaming of ballerinas when the input is a neutral word.</p>
+        <p>Why is the dancer always a ballerina? Bad training? Can a machine hold a bias if it learns from a biased culture? Is "good" training possible if culture was written by those in a position of power — and is there such a thing as an unbiased culture?</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="bleed rv">
+  <img src="../assets/img/ros-02-1800.jpg" alt="A generative point-cloud form beside the AI's real-time interpretation of it as a dancer" loading="lazy">
+</div>
+
+<section class="section">
+  <div class="wrap">
+    <div class="rv" style="max-width:60ch;margin-bottom:38px">
+      <p class="mono faint" style="margin-bottom:14px">The interface</p>
+      <p class="dim">There is no screen to touch and nothing to read. A visitor holds one hand above the controller and the shape answers.</p>
+    </div>
+
+    <div class="grid grid-4 rv">
+      <figure><div class="shot sq zoomable" style="background:#fff"><img src="../assets/img/ros-g1-900.jpg" data-full="../assets/img/ros-g1-1800.jpg" alt="Instruction card: hold one hand 40 cm above the controller" loading="lazy"></div><figcaption>Hold — 40 cm above</figcaption></figure>
+      <figure><div class="shot sq zoomable" style="background:#fff"><img src="../assets/img/ros-g2-900.jpg" data-full="../assets/img/ros-g2-1800.jpg" alt="Instruction card: move your hand slowly to control the movement" loading="lazy"></div><figcaption>Move — control the shape</figcaption></figure>
+      <figure><div class="shot sq zoomable" style="background:#fff"><img src="../assets/img/ros-g3-900.jpg" data-full="../assets/img/ros-g3-1800.jpg" alt="Instruction card: rotate your wrist slowly to twist the shape" loading="lazy"></div><figcaption>Rotate — twist</figcaption></figure>
+      <figure><div class="shot sq zoomable" style="background:#fff"><img src="../assets/img/ros-g4-900.jpg" data-full="../assets/img/ros-g4-1800.jpg" alt="Instruction card: close hand to zoom in, extend hand to zoom out" loading="lazy"></div><figcaption>Grip — zoom</figcaption></figure>
+    </div>
+
+    <div class="grid grid-3 mt-l rv">
+      <figure class="shot tall zoomable"><img src="../assets/img/ros-01-900.jpg" data-full="../assets/img/ros-01-1800.jpg" alt="Point cloud and generated dancer, side by side" loading="lazy"></figure>
+      <figure class="shot tall zoomable"><img src="../assets/img/ros-03-900.jpg" data-full="../assets/img/ros-03-1800.jpg" alt="Woven point geometry translated into a figure in a beaded gown" loading="lazy"></figure>
+      <figure class="shot tall zoomable"><img src="../assets/img/ros-06-900.jpg" data-full="../assets/img/ros-06-1800.jpg" alt="Fan-shaped point structure rendered as a dancer mid-turn" loading="lazy"></figure>
+    </div>
+
+    <div class="grid grid-2 mt-l rv">
+      <figure>
+        <div class="shot wide zoomable"><img src="../assets/img/ros-patch-900.jpg" data-full="../assets/img/ros-patch-1800.jpg" alt="The TouchDesigner network running the installation, with the diffusion output alongside" loading="lazy"></div>
+        <figcaption>The patch — TouchDesigner network and live diffusion output</figcaption>
+      </figure>
+      <figure>
+        <div class="shot wide zoomable"><img src="../assets/img/ros-room-900.jpg" data-full="../assets/img/ros-room-1800.jpg" alt="A visitor's hand over the controller in the darkened installation room" loading="lazy"></div>
+        <figcaption>Installed — a hand above the controller in the dark</figcaption>
+      </figure>
+    </div>
+
+    <div class="mt-l rv">
+      <p class="mono faint" style="margin-bottom:18px">Credits</p>
+      <ul class="credits">
+        <li><span>Concept, development &amp; realisation</span>Emanuele Musca — Evestrum_AV</li>
+        <li><span>TouchDesigner component</span>Lyell Hintz — @dotsimulate</li>
+        <li><span>Shown at</span>KHROMA New Media Art Center, Berlin · Aura Labs, Berlin</li>
+      </ul>
+    </div>
+
+    <div class="mt-l rv">
+      <p class="mono faint" style="margin-bottom:14px">Planned development</p>
+      <ul class="spec" style="columns:2;column-gap:48px">
+        <li style="break-inside:avoid"><b>01</b>Visitor prompting — the audience becomes part of the research, via controlled word lists on a MIDI wheel or free keyboard input</li>
+        <li style="break-inside:avoid"><b>02</b>Ultraleap upgrade for finer hand tracking</li>
+        <li style="break-inside:avoid"><b>03</b>MIDI keyboard and audio reactivity</li>
+        <li style="break-inside:avoid"><b>04</b>Higher output resolution, CRT screen for the AI feed</li>
+        <li style="break-inside:avoid"><b>05</b>Large language model integration</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<div class="wrap">
+  <nav class="pager">
+    <a href="beacon.html"><svg width="20" height="8" viewBox="0 0 20 8" fill="none" aria-hidden="true"><path d="M20 4H2M5.5 .5 1.5 4l4 3.5" stroke="currentColor"/></svg> Beacon</a>
+    <a href="latent-spaces.html">Latent Spaces <svg width="20" height="8" viewBox="0 0 20 8" fill="none" aria-hidden="true"><path d="M0 4h18M14.5 .5 18.5 4l-4 3.5" stroke="currentColor"/></svg></a>
+  </nav>
+</div>
+
+</main>
+
+<footer class="foot">
+  <div class="wrap">
+    <span class="mono">Evestrum · Emanuele Musca · Berlin</span>
+    <span class="mono">© <span id="yr">2026</span></span>
+  </div>
+</footer>
+
+<div class="lb" id="lb" role="dialog" aria-modal="true" aria-label="Image viewer">
+  <button class="lb-close" type="button">Close ✕</button>
+  <img src="" alt="">
+</div>
+
+<script src="../assets/js/main.js"></script>
+</body>
+</html>
