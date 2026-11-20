@@ -55,6 +55,7 @@
   if (lb) {
     var lbImg = lb.querySelector('img');
     var opener = null;
+    var pushed = false;   /* true while the viewer owns a history entry */
 
     function open(src, alt) {
       lbImg.src = src;
@@ -62,13 +63,27 @@
       lb.classList.add('open');
       document.body.style.overflow = 'hidden';
       lb.querySelector('.lb-close').focus();
+      /* give the viewer its own history entry, so the phone's Back button
+         closes the image instead of leaving the site */
+      if (!pushed) {
+        try { history.pushState({ lb: 1 }, '', location.href); pushed = true; }
+        catch (err) { pushed = false; }
+      }
     }
-    function close() {
+    function teardown() {
       lb.classList.remove('open');
       lbImg.src = '';
       document.body.style.overflow = '';
       if (opener) opener.focus();
     }
+    function close() {
+      if (pushed) { history.back(); return; }  /* popstate calls teardown */
+      teardown();
+    }
+    addEventListener('popstate', function () {
+      pushed = false;
+      if (lb.classList.contains('open')) teardown();
+    });
 
     document.querySelectorAll('.zoomable').forEach(function (el) {
       el.setAttribute('tabindex', '0');
