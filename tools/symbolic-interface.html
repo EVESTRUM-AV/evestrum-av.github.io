@@ -1,0 +1,116 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Symbolic Visual Interface — Emanuele Musca</title>
+<meta name="description" content="A TouchDesigner and Leap Motion performance instrument: six symbol libraries driven by hand tracking, audio and tempo, with a single operator panel. Built by Emanuele Musca.">
+<link rel="canonical" href="https://evestrum-av.github.io/tools/symbolic-interface.html">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Symbolic Visual Interface — Emanuele Musca">
+<meta property="og:description" content="A TouchDesigner and Leap Motion performance instrument: six symbol libraries driven by hand tracking, audio and tempo, with a single operator panel.">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="icon" href="../assets/evestrum-mark.svg" type="image/svg+xml">
+<link rel="icon" href="../favicon-32.png" sizes="32x32">
+<link rel="apple-touch-icon" href="../apple-touch-icon.png">
+<meta name="theme-color" content="#08090a">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=Inter:wght@400;450;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../assets/css/main.css">
+</head>
+<body>
+<div class="grain" aria-hidden="true"></div>
+<a class="skip" href="#main">Skip to content</a>
+<nav class="nav">
+  <div class="wrap">
+    <a class="brand" href="../index.html" aria-label="Emanuele Musca — home">
+      <img src="../assets/evestrum-mark.svg" alt="" width="24" height="24">
+      <b>Emanuele Musca</b>
+    </a>
+    <div class="nav-links">
+      <a href="../index.html#technical">Technical</a>
+      <a href="../index.html#art">Art</a>
+      <a href="../index.html#tools" data-opt>Tools</a>
+      <a href="../index.html#about">About</a>
+      <a href="../index.html#contact">Contact</a>
+    </div>
+  </div>
+</nav>
+<main id="main">
+<header class="section" style="padding-bottom:0;padding-top:140px">
+  <div class="wrap">
+    <span class="mono case-kicker">Tool — performance instrument</span>
+    <h1 data-decode style="font-size:clamp(32px,5.6vw,76px);letter-spacing:-.05em;margin:14px 0 .3em">Symbolic Visual Interface</h1>
+    <p class="lede dim" style="margin-bottom:12px">TouchDesigner &amp; Leap Motion</p>
+    <p class="work-people case-people"><span class="pr"><b>Emanuele Musca</b> <i>— Evestrum_AV, concept, build &amp; operation</i></span></p>
+    <div class="case-meta mono">
+      <div><span>Year</span><b>2026</b></div>
+      <div><span>Built with</span><b>TouchDesigner · Claude Code · Embody MCP</b></div>
+      <div><span>Input</span><b>Hand tracking · audio · MIDI</b></div>
+      <div><span>Status</span><b>In development</b></div>
+    </div>
+  </div>
+</header>
+
+<section class="section">
+  <div class="wrap">
+    <figure class="bleed-fig rv">
+      <video data-auto muted loop playsinline controls preload="none" poster="../assets/img/poster-tdsym-full.jpg"
+             aria-label="Screen recording: the control panel on the left driving the live symbol output on the right">
+        <source src="../assets/video/tdsym-full.mp4" type="video/mp4">
+      </video>
+      <figcaption>Panel left, live output right — switching libraries, symbols and colour while the show runs</figcaption>
+    </figure>
+  </div>
+</section>
+
+<section class="section" style="padding-top:0">
+  <div class="wrap case-body">
+    <div class="prose rv">
+      <p>A visual instrument for live performance, built around one idea: a symbol is a better unit of composition than a clip. Six libraries sit behind the panel — sacred geometry, Japanese kanji, occult sigils, alchemical signs, dystopic quotes and forgotten scripts — and the system draws from them in real time rather than playing back rendered video.</p>
+      <p>Everything an operator needs during a show is on a single page. Which library is live, which symbol is on screen, the tempo and how much of it is being taken from the audio, the hand-tracking state, the MIDI state. No hunting through a node network with an audience in the room.</p>
+      <p>Tempo is the spine. The system follows an auto-detected BPM from whatever is playing, and the symbol changes, repeats and colour moves ride on it. A Leap Motion sensor lets a performer reach into the field and take over — position and gesture drive shape, repetition and intensity directly. Where there is no hand, the LFOs keep it moving on their own, so the piece never stalls when nobody is standing in front of it.</p>
+      <p>Audio comes in over WASAPI loopback, so it listens to whatever the room is actually hearing — no patching, no interface, no separate send. The output goes full screen to a second display, with the panel staying on the operator's monitor.</p>
+      <p>Built in TouchDesigner and developed with Claude Code over the Embody MCP, which exposes the live network to an AI client and externalises it to version-controlled text — unusual for a TouchDesigner patch, and the reason this one could go through thirteen rebuilds without losing anything.</p>
+    </div>
+    <div class="rv">
+      <ul class="spec">
+        <li><b>Libraries</b>Sacred geometry · kanji · occult · alchemy · dystopic quotes · forgotten script</li>
+        <li><b>Tempo</b>Auto BPM detection with a manual override, driving shape and colour changes</li>
+        <li><b>Hand</b>Leap Motion tracking for shape, repetition and intensity</li>
+        <li><b>Audio</b>WASAPI loopback — listens to the room's own output</li>
+        <li><b>Colour</b>Four palette slots, LFO-driven transitions, per-list silence rules</li>
+        <li><b>Look</b>Film grain, cyberpunk and clean passes, repeat on X and Y</li>
+        <li><b>Control</b>MIDI learn on every parameter, operator panel separate from the full-screen output</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<section class="section" style="padding-top:0">
+  <div class="wrap">
+    <figure class="bleed-fig rv">
+      <img src="../assets/img/tool-tdsym-panel-1800.jpg" alt="The operator panel: live status readout, tab strip for audio, shapes, tempo, look, colour, motion, hand, film and MIDI, and a row of symbol library buttons, over a wall of green kanji" loading="lazy">
+      <figcaption>The operator panel — everything reachable in one page during a show</figcaption>
+    </figure>
+  </div>
+</section>
+
+<div class="wrap">
+  <nav class="pager">
+    <a href="../index.html#tools"><svg width="20" height="8" viewBox="0 0 20 8" fill="none" aria-hidden="true"><path d="M20 4H2M5.5 .5 1.5 4l4 3.5" stroke="currentColor"/></svg> Tools</a>
+    <a href="orb/index.html">ORB <svg width="20" height="8" viewBox="0 0 20 8" fill="none" aria-hidden="true"><path d="M0 4h18M14.5 .5 18.5 4l-4 3.5" stroke="currentColor"/></svg></a>
+  </nav>
+</div>
+</main>
+<footer class="foot"><div class="wrap">
+  <span class="mono">Emanuele Musca · Evestrum · Berlin</span>
+  <span class="mono">© <span id="yr">2026</span></span>
+</div></footer>
+<div class="lb" id="lb" role="dialog" aria-modal="true" aria-label="Image viewer">
+  <button class="lb-close" type="button">Close ✕</button><img src="" alt="">
+</div>
+<script src="../assets/js/main.js"></script>
+</body>
+</html>

@@ -92,6 +92,47 @@
     });
   }
 
+  /* ---- decode: headings resolve from random glyphs on reveal ---- */
+  var GLYPHS = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789#%&/\\<>[]{}=+*';
+  function decode(el) {
+    if (el.dataset.decoded) return;
+    el.dataset.decoded = '1';
+    var target = el.textContent;
+    var len = target.length;
+    if (len > 60) return;                 // leave long strings alone
+    var frame = 0, total = 16 + len * 1.4;
+    el.classList.add('scrambling');
+    function tick() {
+      var progress = frame / total;
+      var settled = Math.floor(progress * len);
+      var out = '';
+      for (var i = 0; i < len; i++) {
+        var ch = target[i];
+        if (ch === ' ' || i < settled) out += ch;
+        else out += GLYPHS[(Math.random() * GLYPHS.length) | 0];
+      }
+      el.textContent = out;
+      frame++;
+      if (frame <= total) requestAnimationFrame(tick);
+      else { el.textContent = target; el.classList.remove('scrambling'); }
+    }
+    requestAnimationFrame(tick);
+  }
+
+  var decodables = document.querySelectorAll('[data-decode]');
+  if (decodables.length) {
+    if (reduce || !('IntersectionObserver' in window)) {
+      decodables.forEach(function (el) { el.dataset.decoded = '1'; });
+    } else {
+      var dio = new IntersectionObserver(function (entries) {
+        entries.forEach(function (e) {
+          if (e.isIntersecting) { decode(e.target); dio.unobserve(e.target); }
+        });
+      }, { rootMargin: '0px 0px -12% 0px', threshold: 0.3 });
+      decodables.forEach(function (el) { dio.observe(el); });
+    }
+  }
+
   /* ---- current year ---- */
   var y = document.getElementById('yr');
   if (y) y.textContent = new Date().getFullYear();
