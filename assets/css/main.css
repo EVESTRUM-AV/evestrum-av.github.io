@@ -19,7 +19,7 @@
 
   --gut:clamp(20px,5vw,72px);
   --maxw:1560px;
-  --edge:max(var(--gut), calc((100vw - var(--maxw))/2));
+  --edge:max(0px, calc((100vw - var(--maxw))/2));
   --rule:1px;
 }
 
@@ -838,8 +838,8 @@ figcaption{
 .track + .track{border-left:var(--rule) solid var(--line)}
 /* panels stay full-bleed, but their text lines up with the page's content column */
 @media(min-width:801px){
-  .track:first-child{padding-left:calc(var(--edge) + var(--gut))}
-  .track:last-child{padding-right:calc(var(--edge) + var(--gut))}
+  .track:first-child{padding-left:calc(var(--edge) + 2*var(--gut))}
+  .track:last-child{padding-right:calc(var(--edge) + 2*var(--gut))}
 }
 .track:hover{background:rgba(255,255,255,.025)}
 .track-no{color:var(--fg-faint);display:block;margin-bottom:18px}
