@@ -971,6 +971,32 @@ a.tool:hover{background:var(--bg-3);border-color:var(--line-strong)}
 .tool p{font-size:15px;margin:0}
 .tool-cta{display:inline-block;margin-top:20px;color:var(--fg)}
 
+/* ---------- collaborations ---------- */
+.collab{list-style:none;margin:0;padding:0}
+.collab li{
+  padding:12px 0;
+  border-top:var(--rule) solid var(--line);
+}
+.collab li:last-child{border-bottom:var(--rule) solid var(--line)}
+.collab b{
+  display:block;
+  font-weight:450;
+  font-size:15px;
+  color:var(--fg);
+  letter-spacing:-.01em;
+}
+.collab i{
+  display:block;
+  font-style:normal;
+  font-family:var(--mono);
+  font-size:11px;
+  letter-spacing:.05em;
+  line-height:1.5;
+  color:var(--fg-faint);
+  margin-top:3px;
+  max-width:44ch;
+}
+
 /* ---------- inline link ---------- */
 .inline-link{
   color:var(--fg);
