@@ -795,7 +795,9 @@ figcaption{
   text-shadow:0 1px 4px rgba(0,0,0,.9);
   margin:0;
 }
-@media(max-width:620px){.hero-credit{font-size:9px;letter-spacing:.1em}}
+@media(max-width:620px){
+  .hero-credit{font-size:7.5px;letter-spacing:.06em;bottom:10px;opacity:.8}
+}
 .case-hero .hero-credit{left:auto;right:clamp(16px,4vw,46px)}
 .fig-credit{
   position:absolute;
