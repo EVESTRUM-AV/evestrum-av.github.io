@@ -996,6 +996,7 @@ a.tool:hover{background:var(--bg-3);border-color:var(--line-strong)}
   margin-top:3px;
   max-width:44ch;
 }
+.collab i em{font-style:italic;color:inherit}
 
 /* ---------- inline link ---------- */
 .inline-link{
