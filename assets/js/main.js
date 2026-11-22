@@ -214,6 +214,23 @@
     setTimeout(function () { microGlitch(); loop(); }, 2500 + Math.random() * 4500);
   })();
 
+  /* ---- open-on-click sections: arriving via a link to one opens it ---- */
+  function openFold(hash) {
+    if (!hash || hash.length < 2) return;
+    var t = document.getElementById(decodeURIComponent(hash.slice(1)));
+    if (!t) return;
+    var d = t.querySelector('details.fold') || t.closest('details.fold');
+    if (d && !d.open) d.open = true;
+  }
+  openFold(location.hash);
+  addEventListener('hashchange', function () { openFold(location.hash); });
+  document.addEventListener('click', function (e) {
+    var a = e.target.closest && e.target.closest('a[href*="#"]');
+    if (!a) return;
+    var u = new URL(a.href, location.href);
+    if (u.pathname === location.pathname) openFold(u.hash);
+  });
+
   /* ---- current year ---- */
   var y = document.getElementById('yr');
   if (y) y.textContent = new Date().getFullYear();

@@ -363,7 +363,7 @@ p:last-child{margin-bottom:0}
 .work-txt{min-width:0}
 .work-no{color:var(--fg-faint);display:block;margin-bottom:14px}
 .work h3{
-  font-size:clamp(21px,2.4vw,34px);
+  font-size:clamp(26px,3.6vw,52px);
   letter-spacing:-.045em;
   margin-bottom:.28em;
 }
@@ -1017,3 +1017,31 @@ a.tool:hover{background:var(--bg-3);border-color:var(--line-strong)}
 @media(prefers-reduced-motion:reduce){
   .grain{animation:none}
 }
+
+/* ---------- open-on-click sections (Festivals & events, Collaborations) ---------- */
+details.fold > summary{list-style:none;cursor:pointer}
+details.fold > summary::-webkit-details-marker{display:none}
+details.fold > summary:focus-visible{outline:1px solid var(--line-strong);outline-offset:6px}
+details.fold:not([open]) > summary{margin-bottom:0}
+.section:has(> .wrap > details.fold:not([open])){padding-bottom:clamp(40px,6vw,88px)}
+.fold-ico{
+  position:relative;
+  flex:none;
+  width:clamp(16px,1.6vw,22px);
+  height:clamp(16px,1.6vw,22px);
+  align-self:center;
+  color:var(--fg-dim);
+  transition:color .25s;
+}
+.fold-ico::before,.fold-ico::after{
+  content:"";
+  position:absolute;
+  left:0;right:0;top:50%;
+  height:1px;
+  background:currentColor;
+  transition:transform .35s cubic-bezier(.22,1,.36,1);
+}
+.fold-ico::after{transform:rotate(90deg)}
+details.fold[open] .fold-ico::after{transform:rotate(0deg)}
+details.fold > summary:hover .fold-ico{color:var(--fg)}
+.fold-body > .grid figure figcaption{margin-top:7px}
