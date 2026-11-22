@@ -1067,3 +1067,26 @@ details.fold > summary:hover .fold-ico{color:var(--fg)}
   color:var(--fg);
   text-shadow:-1px 0 rgba(255,60,80,.75),1px 0 rgba(0,220,255,.65);
 }
+
+/* preview picture under a closed folded heading; hidden once open */
+details.fold > summary{flex-wrap:wrap}
+.fold-pic{
+  order:9;
+  flex-basis:100%;
+  display:block;
+  margin-top:clamp(14px,2vw,24px);
+  aspect-ratio:21/9;
+  overflow:hidden;
+  border:var(--rule) solid var(--line);
+  background:var(--bg-2);
+}
+.fold-pic img{
+  width:100%;height:100%;
+  object-fit:cover;
+  display:block;
+  opacity:.8;
+  transition:opacity .4s,transform .8s cubic-bezier(.22,1,.36,1);
+}
+details.fold > summary:hover .fold-pic img{opacity:1;transform:scale(1.02)}
+details.fold[open] .fold-pic{display:none}
+@media(max-width:720px){.fold-pic{aspect-ratio:16/9}}
