@@ -111,9 +111,19 @@
      Time-based (same speed on 60 Hz phones and 144 Hz monitors), replays
      every time a heading scrolls back into view. Runs even when the OS asks
      for reduced motion: it swaps characters, nothing moves on screen.      */
-  var GLYPHS = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789#%&/\\<>[]{}=+*';
+  var LOWER = 'abcdefghijklmnopqrstuvwxyz', UPPER = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ',
+      DIGIT = '0123456789', SYM = '/\\<>[]{}=+*';
   var SWAP_MS = 1000 / 30;             // glyphs change ~30x a second
-  function glyph() { return GLYPHS[(Math.random() * GLYPHS.length) | 0]; }
+  function pick(set) { return set[(Math.random() * set.length) | 0]; }
+  // a random glyph of roughly the same width class as the letter it replaces,
+  // so lines don't re-wrap and nothing below the text jumps
+  function glyphLike(ch) {
+    var r = Math.random();
+    if (/[a-z]/.test(ch)) return r < 0.8 ? pick(LOWER) : pick(SYM);
+    if (/[A-Z]/.test(ch)) return r < 0.85 ? pick(UPPER) : pick('#%&');
+    if (/[0-9]/.test(ch)) return pick(DIGIT);
+    return pick(SYM);
+  }
 
   function decode(el) {
     if (el._busy) return;
@@ -123,12 +133,14 @@
     el._busy = true;
     var dur = (16 + len * 1.4) / 60 * 1000 * 2;   // twice the original length
     var start = performance.now(), last = -1e9;
+    el.style.height = el.offsetHeight + 'px';     // hold the line box steady
     el.classList.add('scrambling');
     function tick(now) {
       var p = (now - start) / dur;
       if (p >= 1) {
         el.textContent = target;
         el.classList.remove('scrambling');
+        el.style.height = '';
         el._busy = false;
         return;
       }
@@ -137,7 +149,7 @@
         var settled = Math.floor(p * len), out = '';
         for (var i = 0; i < len; i++) {
           var ch = target[i];
-          out += (ch === ' ' || i < settled) ? ch : glyph();
+          out += (ch === ' ' || i < settled) ? ch : glyphLike(ch);
         }
         el.textContent = out;
       }
@@ -166,20 +178,20 @@
     decodables.forEach(function (el) { dio.observe(el); });
   }
 
-  /* ---- micro-glitch: every few seconds one or two characters of some
-     visible text flicker for a fraction of a second, then settle.        */
+  /* ---- micro-glitch: every few seconds a short run of 2–4 characters in
+     some visible text flickers (with a faint colour split) and settles.  */
   var MG_SKIP = 'script,style,noscript,svg,video,iframe,textarea,input,select,' +
-                '.scrambling,[aria-hidden="true"],#lb';
+                '.scrambling,.mg,[aria-hidden="true"],#lb';
   function pickTextNode() {
     var vh = window.innerHeight, found = [];
     var w = document.createTreeWalker(document.body, NodeFilter.SHOW_TEXT, null);
     var n;
     while ((n = w.nextNode())) {
-      if (n.nodeValue.replace(/\s/g, '').length < 2) continue;
+      if (!/\S{2}/.test(n.nodeValue)) continue;
       var p = n.parentElement;
       if (!p || p.closest(MG_SKIP)) continue;
       var r = p.getBoundingClientRect();
-      if (r.width === 0 || r.bottom < 0 || r.top > vh) continue;
+      if (r.width === 0 || r.bottom < 60 || r.top > vh - 20) continue;
       found.push(n);
     }
     return found.length ? found[(Math.random() * found.length) | 0] : null;
@@ -191,27 +203,41 @@
     if (sel && String(sel).length) return;          // never touch text being selected
     var node = pickTextNode();
     if (!node) return;
-    var orig = node.nodeValue, host = node.parentElement;
-    var idx = [];
-    for (var i = 0; i < orig.length; i++) if (/\S/.test(orig[i])) idx.push(i);
-    var count = Math.random() < 0.75 ? 1 : 2, pos = [];
-    while (pos.length < count && idx.length) pos.push(idx.splice((Math.random() * idx.length) | 0, 1)[0]);
-    var h0 = host.offsetHeight, swaps = 2 + ((Math.random() * 3) | 0), k = 0;
-    function swap() {
-      if (node.nodeValue !== orig && k === 0) return;   // text changed meanwhile
-      if (k >= swaps) { node.nodeValue = orig; return; }
-      var chars = orig.split('');
-      pos.forEach(function (j) { chars[j] = glyph(); });
-      node.nodeValue = chars.join('');
-      if (host.offsetHeight !== h0) { node.nodeValue = orig; return; }  // would re-wrap: abort
-      k++;
-      setTimeout(swap, 55 + Math.random() * 45);
+    var text = node.nodeValue, starts = [];
+    for (var i = 0; i < text.length - 1; i++) if (/\S\S/.test(text.substr(i, 2))) starts.push(i);
+    if (!starts.length) return;
+    var i0 = starts[(Math.random() * starts.length) | 0], len = 2 + ((Math.random() * 3) | 0), i1 = i0;
+    while (i1 < text.length && i1 - i0 < len && /\S/.test(text[i1])) i1++;
+    var host = node.parentNode, h0 = host.offsetHeight;
+    var run = text.slice(i0, i1);
+    var rest = node.splitText(i0);
+    rest.splitText(run.length);
+    var span = document.createElement('span');
+    span.className = 'mg';
+    span.setAttribute('aria-hidden', 'true');
+    span.textContent = run;
+    host.replaceChild(span, rest);
+    function restore() {
+      if (!span.parentNode) return;               // the text was rewritten meanwhile
+      var parent = span.parentNode;
+      parent.replaceChild(document.createTextNode(run), span);
+      parent.normalize();
     }
-    swap();
+    var swaps = 5 + ((Math.random() * 4) | 0), k = 0;
+    (function swap() {
+      if (!span.parentNode) return;
+      if (k >= swaps) { restore(); return; }
+      var out = '';
+      for (var j = 0; j < run.length; j++) out += glyphLike(run[j]);
+      span.textContent = out;
+      if (host.offsetHeight !== h0) { restore(); return; }   // would re-wrap: abort
+      k++;
+      setTimeout(swap, 60 + Math.random() * 40);
+    })();
   }
 
   (function loop() {
-    setTimeout(function () { microGlitch(); loop(); }, 2500 + Math.random() * 4500);
+    setTimeout(function () { microGlitch(); loop(); }, 1800 + Math.random() * 2700);
   })();
 
   /* ---- open-on-click sections: arriving via a link to one opens it ---- */
