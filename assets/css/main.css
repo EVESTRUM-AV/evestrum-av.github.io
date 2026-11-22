@@ -1132,3 +1132,9 @@ details.fold[open] .fold-pic{display:none}
 /* cigarette portrait at the end of About */
 .about-photo{max-width:420px;margin-inline:0}
 .about-photo img{width:100%;height:auto;display:block}
+
+/* phones: tool cards read like the art projects — text first, preview after */
+@media(max-width:520px){
+  .tool-media{order:2}
+  .tool-txt{padding-bottom:18px}
+}
