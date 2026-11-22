@@ -1151,3 +1151,13 @@ details.fold[open] .fold-pic{display:none}
   .about-standing,.about-bio,.about-proj{grid-column:auto;grid-row:auto}
   .about-proj{margin-top:8px}
 }
+
+/* Contact: on wide screens the photo sits left, statement + links right;
+   phones keep the reading order (text, links, photo) */
+.contact-grid .contact-photo{margin-top:clamp(28px,4vw,48px)}
+@media(min-width:861px){
+  .contact-grid{grid-template-rows:auto 1fr}
+  .contact-grid .contact-text{grid-column:2;grid-row:1}
+  .contact-grid .contact-side{grid-column:2;grid-row:2;margin-top:clamp(24px,3vw,40px)}
+  .contact-grid .contact-photo{grid-column:1;grid-row:1 / span 2;margin-top:0;align-self:start}
+}
