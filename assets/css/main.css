@@ -1161,3 +1161,6 @@ details.fold[open] .fold-pic{display:none}
   .contact-grid .contact-side{grid-column:2;grid-row:2;margin-top:clamp(24px,3vw,40px)}
   .contact-grid .contact-photo{grid-column:1;grid-row:1 / span 2;margin-top:0;align-self:start}
 }
+
+/* collaborations: optional studio line between the name and where we worked together */
+.collab .studio{display:block;font-size:14px;color:var(--fg-dim);letter-spacing:-.005em;margin-top:1px}
