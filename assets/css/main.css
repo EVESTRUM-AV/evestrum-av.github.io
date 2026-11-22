@@ -1090,3 +1090,5 @@ details.fold > summary{flex-wrap:wrap}
 details.fold > summary:hover .fold-pic img{opacity:1;transform:scale(1.02)}
 details.fold[open] .fold-pic{display:none}
 @media(max-width:720px){.fold-pic{aspect-ratio:16/9}}
+/* teaser shares the title row on wider screens (shrinks and wraps its own text instead of dropping) */
+.fold-teaser{flex:1 1 0;min-width:0}
