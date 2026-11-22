@@ -1162,5 +1162,5 @@ details.fold[open] .fold-pic{display:none}
   .contact-grid .contact-photo{grid-column:1;grid-row:1 / span 2;margin-top:0;align-self:start}
 }
 
-/* collaborations: optional studio line between the name and where we worked together */
-.collab .studio{display:block;font-size:14px;color:var(--fg-dim);letter-spacing:-.005em;margin-top:1px}
+/* collaborations: studio in bold, then the people, then where we worked together */
+.collab .who{display:block;font-size:14px;color:var(--fg-dim);letter-spacing:-.005em;margin-top:1px}
