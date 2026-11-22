@@ -244,7 +244,7 @@
   }
 
   (function loop() {
-    setTimeout(function () { microGlitch(); loop(); }, 1500 + Math.random() * 2500);
+    setTimeout(function () { microGlitch(); loop(); }, 1000 + Math.random() * 1800);
   })();
 
   /* ---- open-on-click sections: arriving via a link to one opens it ---- */

@@ -1091,3 +1091,40 @@ details.fold[open] .fold-pic{display:none}
 @media(max-width:720px){.fold-pic{aspect-ratio:16/9}}
 /* teaser shares the title row on wider screens (shrinks and wraps its own text instead of dropping) */
 .fold-teaser{flex:1 1 0;min-width:0}
+
+/* the +/− on folded headings: brighter, thicker, and it glitches every couple of seconds.
+   Runs even with reduced motion (tiny, no travel). */
+.fold-ico{
+  width:clamp(20px,2vw,28px);
+  height:clamp(20px,2vw,28px);
+  color:var(--fg);
+  animation:icoJit 2.1s steps(1,end) infinite;
+}
+.fold-ico::before,.fold-ico::after{
+  height:2px;
+  margin-top:-1px;
+  animation:icoRGB 2.1s steps(1,end) infinite;
+}
+@keyframes icoJit{
+  0%,70%,100%{translate:0 0}
+  72%{translate:2px -1px}
+  76%{translate:-2px 1px}
+  80%{translate:1px 0}
+  84%{translate:0 0}
+  90%{translate:-1px -1px}
+  93%{translate:0 0}
+}
+@keyframes icoRGB{
+  0%,70%,100%{box-shadow:none}
+  72%{box-shadow:-3px 0 rgba(255,60,80,.9),3px 0 rgba(0,220,255,.85)}
+  76%{box-shadow:3px 0 rgba(255,60,80,.9),-3px 0 rgba(0,220,255,.85)}
+  80%{box-shadow:-1px 0 rgba(255,60,80,.8),1px 0 rgba(0,220,255,.8)}
+  84%{box-shadow:none}
+  90%{box-shadow:-2px 0 rgba(255,60,80,.8),2px 0 rgba(0,220,255,.7)}
+  93%{box-shadow:none}
+}
+@media(prefers-reduced-motion:reduce){
+  details.fold .fold-ico{animation-duration:2.1s !important}
+  details.fold .fold-ico::before,
+  details.fold .fold-ico::after{animation-duration:2.1s !important;transition-duration:.35s !important}
+}
