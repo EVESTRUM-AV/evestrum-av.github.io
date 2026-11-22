@@ -1138,3 +1138,16 @@ details.fold[open] .fold-pic{display:none}
   .tool-media{order:2}
   .tool-txt{padding-bottom:18px}
 }
+
+/* About: standing photo, then the projectors photo, both in the left column on wide screens;
+   on phones the projectors photo comes after the text */
+.about-grid{grid-template-rows:auto 1fr}
+.about-standing{grid-column:1;grid-row:1}
+.about-bio{grid-column:2;grid-row:1 / span 2}
+.about-proj{grid-column:1;grid-row:2;align-self:start;margin:clamp(20px,2.4vw,32px) 0 0}
+.about-proj img{width:100%;height:auto;display:block}
+@media(max-width:860px){
+  .about-grid{grid-template-rows:none}
+  .about-standing,.about-bio,.about-proj{grid-column:auto;grid-row:auto}
+  .about-proj{margin-top:8px}
+}
