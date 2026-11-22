@@ -133,14 +133,21 @@
     el._busy = true;
     var dur = (16 + len * 1.4) / 60 * 1000 * 2;   // twice the original length
     var start = performance.now(), last = -1e9;
-    el.style.height = el.offsetHeight + 'px';     // hold the line box steady
+    // freeze the heading's box (width and height) so neither it nor anything
+    // sharing its row (labels, the +/−) can move while the glyphs churn
+    var box = el.getBoundingClientRect();
+    var lh = parseFloat(getComputedStyle(el).lineHeight) || box.height;
+    el.style.width = box.width + 'px';
+    el.style.height = box.height + 'px';
+    el.style.flex = 'none';
+    if (box.height < lh * 1.5) { el.style.whiteSpace = 'nowrap'; el.style.overflow = 'hidden'; }
     el.classList.add('scrambling');
     function tick(now) {
       var p = (now - start) / dur;
       if (p >= 1) {
         el.textContent = target;
         el.classList.remove('scrambling');
-        el.style.height = '';
+        el.style.width = el.style.height = el.style.flex = el.style.whiteSpace = el.style.overflow = '';
         el._busy = false;
         return;
       }
@@ -208,7 +215,7 @@
     if (!starts.length) return;
     var i0 = starts[(Math.random() * starts.length) | 0], len = 2 + ((Math.random() * 3) | 0), i1 = i0;
     while (i1 < text.length && i1 - i0 < len && /\S/.test(text[i1])) i1++;
-    var host = node.parentNode, h0 = host.offsetHeight;
+    var host = node.parentNode, row = host.parentElement || host, h0 = host.offsetHeight, r0 = row.offsetHeight;
     var run = text.slice(i0, i1);
     var rest = node.splitText(i0);
     rest.splitText(run.length);
@@ -230,14 +237,14 @@
       var out = '';
       for (var j = 0; j < run.length; j++) out += glyphLike(run[j]);
       span.textContent = out;
-      if (host.offsetHeight !== h0) { restore(); return; }   // would re-wrap: abort
+      if (host.offsetHeight !== h0 || row.offsetHeight !== r0) { restore(); return; }   // would re-wrap: abort
       k++;
       setTimeout(swap, 60 + Math.random() * 40);
     })();
   }
 
   (function loop() {
-    setTimeout(function () { microGlitch(); loop(); }, 1800 + Math.random() * 2700);
+    setTimeout(function () { microGlitch(); loop(); }, 1500 + Math.random() * 2500);
   })();
 
   /* ---- open-on-click sections: arriving via a link to one opens it ---- */
