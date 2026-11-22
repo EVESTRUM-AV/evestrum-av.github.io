@@ -114,10 +114,14 @@ p:last-child{margin-bottom:0}
   font-size:clamp(26px,3.4vw,46px);
   letter-spacing:-.035em;
 }
-/* the two main tracks get bigger titles */
+/* title scale — 1: name (hero h1) · 2: main sections · 3: employers / Genius Loci
+   · 4: venues, artworks, tools. About and Contact keep the base size above. */
 #technical .sec-head h2,
-#art .sec-head h2{
-  font-size:clamp(40px,6.2vw,88px);
+#art .sec-head h2,
+#events .sec-head h2,
+#collaborations .sec-head h2,
+#tools .sec-head h2{
+  font-size:clamp(34px,6.2vw,88px);
   letter-spacing:-.045em;
   line-height:1;
 }
@@ -359,7 +363,7 @@ p:last-child{margin-bottom:0}
 .work-txt{min-width:0}
 .work-no{color:var(--fg-faint);display:block;margin-bottom:14px}
 .work h3{
-  font-size:clamp(30px,5vw,68px);
+  font-size:clamp(21px,2.4vw,34px);
   letter-spacing:-.045em;
   margin-bottom:.28em;
 }
@@ -883,7 +887,7 @@ figcaption .credit{margin-top:4px}
   border-bottom:var(--rule) solid var(--line-strong);
 }
 .sub-head h3{
-  font-size:clamp(21px,2.6vw,34px);
+  font-size:clamp(26px,3.6vw,52px);
   letter-spacing:-.035em;
 }
 
@@ -901,7 +905,7 @@ figcaption .credit{margin-top:4px}
 .venue:hover{background:rgba(255,255,255,.025);padding-left:12px}
 .venue-yr{color:var(--fg-faint)}
 .venue h4{
-  font-size:clamp(19px,2.2vw,28px);
+  font-size:clamp(21px,2.4vw,34px);
   letter-spacing:-.03em;
   margin-bottom:0;
   font-weight:500;
@@ -970,7 +974,7 @@ a.tool:hover{background:var(--bg-3);border-color:var(--line-strong)}
   margin-bottom:16px;
 }
 .tool-live .tool-tag{color:var(--fg);border-color:var(--line-strong)}
-.tool h4{font-size:clamp(20px,2.2vw,27px);letter-spacing:-.03em;margin-bottom:12px;font-weight:500}
+.tool h4{font-size:clamp(21px,2.4vw,34px);letter-spacing:-.03em;margin-bottom:12px;font-weight:500}
 .tool p{font-size:15px;margin:0}
 .tool-cta{display:inline-block;margin-top:20px;color:var(--fg)}
 
