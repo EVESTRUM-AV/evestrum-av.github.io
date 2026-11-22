@@ -881,21 +881,21 @@ figcaption .credit{margin-top:4px}
   display:grid;
   grid-template-columns:86px 1fr 28px;
   gap:clamp(14px,2.4vw,36px);
-  align-items:start;
+  align-items:baseline;
   padding:clamp(20px,2.6vw,32px) 0;
   border-bottom:var(--rule) solid var(--line);
   transition:background .35s ease,padding-left .35s cubic-bezier(.22,1,.36,1);
 }
 .venue:hover{background:rgba(255,255,255,.025);padding-left:12px}
-.venue-yr{color:var(--fg-faint);padding-top:5px}
+.venue-yr{color:var(--fg-faint)}
 .venue h4{
   font-size:clamp(19px,2.2vw,28px);
   letter-spacing:-.03em;
-  margin-bottom:9px;
+  margin-bottom:0;
   font-weight:500;
 }
 .venue p{font-size:15px;max-width:62ch;margin:0}
-.venue-go{color:var(--fg-faint);font-size:15px;padding-top:4px;transition:color .25s,transform .35s cubic-bezier(.22,1,.36,1)}
+.venue-go{color:var(--fg-faint);font-size:15px;transition:color .25s,transform .35s cubic-bezier(.22,1,.36,1)}
 .venue:hover .venue-go{color:var(--fg);transform:translateX(5px)}
 @media(max-width:620px){
   .venue{grid-template-columns:1fr;gap:6px}
