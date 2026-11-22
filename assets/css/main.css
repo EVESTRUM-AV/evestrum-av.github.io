@@ -218,6 +218,13 @@ p:last-child{margin-bottom:0}
   background:
     linear-gradient(180deg,rgba(8,9,10,.82) 0%,rgba(8,9,10,.12) 36%,rgba(8,9,10,.54) 73%,var(--bg) 100%);
 }
+/* home header: full-strength video (grade is baked into the file),
+   only a light shade top and bottom for the nav and the title */
+.hero .hero-media video{opacity:1;filter:none}
+.hero .hero-media::after{
+  background:
+    linear-gradient(180deg,rgba(8,9,10,.55) 0%,rgba(8,9,10,0) 22%,rgba(8,9,10,0) 50%,rgba(8,9,10,.5) 78%,var(--bg) 100%);
+}
 .hero .wrap{
   position:relative;
   z-index:1;
@@ -782,35 +789,22 @@ figcaption{
 }
 .work h3,.venue h4,.tool h4,.track h2{transition:text-shadow .18s linear}
 
-/* ---------- media credits ---------- */
-.hero-credit{
-  position:absolute;
-  left:clamp(16px,4vw,46px);
-  bottom:18px;
-  z-index:3;
-  font-size:10px;
-  letter-spacing:.14em;
-  text-transform:uppercase;
-  color:rgba(236,234,231,.62);
-  text-shadow:0 1px 4px rgba(0,0,0,.9);
-  margin:0;
+/* ---------- media credits: always under the picture / video ---------- */
+.credit{
+  display:block;
+  margin:8px 0 0;
+  font-family:var(--sans);
+  font-style:italic;
+  font-weight:400;
+  font-size:10.5px;
+  letter-spacing:.01em;
+  line-height:1.45;
+  text-transform:none;
+  color:var(--fg-faint);
 }
-@media(max-width:620px){
-  .hero-credit{font-size:7.5px;letter-spacing:.06em;bottom:10px;opacity:.8}
-}
-.case-hero .hero-credit{left:auto;right:clamp(16px,4vw,46px)}
-.fig-credit{
-  position:absolute;
-  right:10px;
-  bottom:8px;
-  z-index:2;
-  font-size:9px;
-  letter-spacing:.14em;
-  text-transform:uppercase;
-  color:rgba(236,234,231,.42);
-  text-shadow:0 1px 3px rgba(0,0,0,.85);
-  pointer-events:none;
-}
+figcaption .credit{margin-top:4px}
+.credit-hero{margin-top:10px}
+.work-media{min-width:0}
 
 /* ---------- hero role ---------- */
 .hero-role{
@@ -954,9 +948,6 @@ a.tool:hover{background:var(--bg-3);border-color:var(--line-strong)}
   z-index:1;
 }
 .tool-live-media .tool-fallback{position:absolute;inset:0;z-index:0}
-@media(prefers-reduced-motion:reduce){
-  .tool-live-media iframe{display:none}
-}
 .tool-txt{padding:clamp(20px,2.4vw,30px)}
 .tool-tag{
   display:inline-block;

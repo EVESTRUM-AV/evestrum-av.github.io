@@ -18,7 +18,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=Inter:wght@400;450;500&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="../assets/css/main.css?v=20261122a">
+<link rel="stylesheet" href="../assets/css/main.css?v=20261122b">
 </head>
 <body>
 <a class="skip" href="#main">Skip to content</a>
@@ -45,8 +45,9 @@
 <header class="case-hero">
   <div class="hero-media">
     <video data-auto autoplay muted loop playsinline preload="metadata"
-           poster="../assets/img/poster-hero-beacon.jpg" aria-hidden="true">
-      <source src="../assets/video/hero-beacon.mp4" type="video/mp4">
+           poster="../assets/img/poster-hero-beacon-v2.jpg" aria-hidden="true">
+      <source src="../assets/video/hero-beacon-1080.mp4" type="video/mp4" media="(min-width: 900px)">
+      <source src="../assets/video/hero-beacon-720.mp4" type="video/mp4">
     </video>
   </div>
   <div class="wrap">
@@ -61,8 +62,8 @@
       <div><span>On show</span><b>Aura Labs, Berlin</b></div>
     </div>
   </div>
-  <p class="hero-credit mono">Video Martina Giannetti</p>
 </header>
+<div class="wrap"><p class="credit credit-hero">Visuals Francesco Della Toffola, video Martina Giannetti</p></div>
 
 <section class="section">
   <div class="wrap case-body">
@@ -110,7 +111,7 @@
       <video data-auto muted loop playsinline preload="none" poster="../assets/img/poster-beacon-room.jpg" aria-label="A visitor moving through the fully wrapped room at Aura Labs">
         <source src="../assets/video/beacon-room.mp4" type="video/mp4">
       </video>
-      <figcaption>The room at Aura Labs, Berlin — video Martina Giannetti</figcaption>
+      <figcaption>The room at Aura Labs, Berlin<span class="credit">Video Martina Giannetti</span></figcaption>
     </figure>
   </div>
 </section>
@@ -175,6 +176,6 @@
   <img src="" alt="">
 </div>
 
-<script src="../assets/js/main.js?v=20261122a"></script>
+<script src="../assets/js/main.js?v=20261122b"></script>
 </body>
 </html>

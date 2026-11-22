@@ -23,7 +23,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=Inter:wght@400;450;500&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="assets/css/main.css?v=20261122a">
+<link rel="stylesheet" href="assets/css/main.css?v=20261122b">
 
 <script type="application/ld+json">
 {
@@ -67,8 +67,9 @@
 <header class="hero" id="top">
   <div class="hero-media">
     <video data-auto autoplay muted loop playsinline preload="metadata"
-           poster="assets/img/poster-hero-beacon.jpg" aria-hidden="true">
-      <source src="assets/video/hero-beacon.mp4" type="video/mp4">
+           poster="assets/img/poster-hero-beacon-v2.jpg" aria-hidden="true">
+      <source src="assets/video/hero-beacon-1080.mp4" type="video/mp4" media="(min-width: 900px)">
+      <source src="assets/video/hero-beacon-720.mp4" type="video/mp4">
     </video>
   </div>
   <div class="wrap">
@@ -84,6 +85,7 @@
   </div>
   <div class="scroll-cue mono" aria-hidden="true">Scroll ↓</div>
 </header>
+<div class="wrap"><p class="credit credit-hero">Beacon — visuals Francesco Della Toffola, video Martina Giannetti</p></div>
 
 <!-- ============ 01 TECHNICAL ============ -->
 <section class="section" id="technical">
@@ -94,7 +96,6 @@
       <span class="spacer"></span>
       <span class="mono dim">as Emanuele Musca · 2015 —</span>
     </div>
-    <p class="rv dim" style="max-width:58ch;margin-bottom:38px">Exhibition technology planning, media server design and operation, projection mapping, system integration and remote venue management.</p>
 
     <div class="two-col">
       <div class="rv">
@@ -193,7 +194,7 @@
         </ul>
         <figure class="mt-m" style="max-width:440px">
           <div class="shot wide zoomable"><img src="assets/img/mxw-fxserver-900.jpg" data-full="assets/img/mxw-fxserver-1800.jpg" alt="An MXWendler FXServer built into a flight case: two red-anodised ventilated panels above a patch bay of HDMI, DisplayPort, SDI, XLR and USB connectors" loading="lazy"></div>
-          <figcaption class="mono faint" style="margin-top:10px">FXServer in a touring flight case — image courtesy of MXWendler</figcaption>
+          <figcaption class="mono faint" style="margin-top:10px">FXServer in a touring flight case<span class="credit">Image courtesy of MXWendler</span></figcaption>
         </figure>
       </div>
     </div>
@@ -247,11 +248,13 @@
             </div>
             <span class="work-cta mono">View project <svg width="20" height="8" viewBox="0 0 20 8" fill="none" aria-hidden="true"><path d="M0 4h18M14.5 .5 18.5 4l-4 3.5" stroke="currentColor"/></svg></span>
           </div>
-          <div class="work-fig">
-            <video data-auto muted loop playsinline preload="none" poster="assets/img/poster-card-beacon.jpg" aria-label="Beacon: a visitor inside the immersive room as vertical light forms sweep the walls">
-              <source src="assets/video/card-beacon.mp4" type="video/mp4">
-            </video>
-            <span class="fig-credit mono">Video Martina Giannetti</span>
+          <div class="work-media">
+            <div class="work-fig">
+              <video data-auto muted loop playsinline preload="none" poster="assets/img/poster-card-beacon.jpg" aria-label="Beacon: a visitor inside the immersive room as vertical light forms sweep the walls">
+                <source src="assets/video/card-beacon.mp4" type="video/mp4">
+              </video>
+            </div>
+            <span class="credit">Video Martina Giannetti</span>
           </div>
         </div>
       </a>
@@ -380,7 +383,7 @@
       <figure class="shot wide zoomable"><img src="assets/img/arc-toa-900.jpg" data-full="assets/img/arc-toa-1800.jpg" alt="TOA Berlin at Funkhaus: a blue-lit architectural structure in the hall" loading="lazy"></figure>
       <figure class="shot wide zoomable"><img src="assets/img/arc-khroma-900.jpg" data-full="assets/img/arc-khroma-1800.jpg" alt="Opening night at KHROMA Berlin, the venue name projected over the crowd" loading="lazy"></figure>
     </div>
-    <p class="mono faint rv" style="margin:14px 0 48px">Tehran Contemporary Sounds 2026 — festival artwork and the Betonhalle stage at silent green. Festival images courtesy of the Genius Loci Weimar archive. Immersive Playground show content by Garamantis.</p>
+    <p class="mono faint rv" style="margin:14px 0 48px">Tehran Contemporary Sounds 2026 — festival artwork and the Betonhalle stage at silent green.<span class="credit">Festival images courtesy of the Genius Loci Weimar archive. Immersive Playground show content by Garamantis.</span></p>
 
     <table class="arch rv">
       <thead><tr><th>Year</th><th>Project</th><th>Venue / client</th><th>Role</th></tr></thead>
@@ -392,7 +395,9 @@
         <tr><td class="yr">2019</td><td class="pj">Nineties Berlin</td><td class="vn">Alte Münze, Berlin</td><td class="rl">Media server planning, setup, training, operator</td></tr>
         <tr><td class="yr">2019</td><td class="pj">Most Wanted: Music</td><td class="vn">Alte Münze, Berlin</td><td class="rl">Media server setup &amp; operator</td></tr>
         <tr><td class="yr">2019</td><td class="pj">100 Jahre Demokratie / Res Publica</td><td class="vn">DNT Weimar</td><td class="rl">Media server setup &amp; operator</td></tr>
+        <tr><td class="yr">2019</td><td class="pj">AXIS 1.0</td><td class="vn">Platz von Amiens, Dortmund</td><td class="rl">Media server setup &amp; operator — video-sound installation with Area Composer, commissioned by the MKK</td></tr>
         <tr><td class="yr">2018</td><td class="pj">Hannover Leuchtet</td><td class="vn">NDR Sendersaal, Hannover</td><td class="rl">Media server setup &amp; operator</td></tr>
+        <tr><td class="yr">2018</td><td class="pj">Pharus</td><td class="vn">Mariendom Neviges</td><td class="rl">Media server setup &amp; operator — four projectors on the 700 m² altar wall, with Area Composer</td></tr>
         <tr><td class="yr">2017</td><td class="pj"><a class="inline-link" href="https://vimeo.com/227270309" target="_blank" rel="noopener">Tech Open Air — Sound Chamber</a></td><td class="vn">Funkhaus, Berlin</td><td class="rl">Mapping support — 9 projectors, 36 speakers, with Barco-Iosono</td></tr>
         <tr><td class="yr">2017</td><td class="pj">500 Years of the Reformation</td><td class="vn">Wartburg / Lutherstadt Wittenberg / Langenzenn</td><td class="rl">Media server setup &amp; operator, up to 12 outputs</td></tr>
         <tr><td class="yr">2017</td><td class="pj">Festival of Lights</td><td class="vn">Schloss Bellevue &amp; Haus Huth, Berlin</td><td class="rl">Media server setup &amp; operator</td></tr>
@@ -405,8 +410,6 @@
         <tr><td class="yr">—</td><td class="pj">Typo Utopia</td><td class="vn">Halle</td><td class="rl">Media server planning, setup &amp; operator</td></tr>
         <tr><td class="yr">—</td><td class="pj">Church projection, Langenzenn</td><td class="vn">for MXWendler</td><td class="rl">Interior mapping, media server setup &amp; operator</td></tr>
         <tr><td class="yr">—</td><td class="pj">Facade projection, Munich</td><td class="vn">Munich</td><td class="rl">Planning support</td></tr>
-        <tr><td class="yr">2019</td><td class="pj">AXIS 1.0</td><td class="vn">Platz von Amiens, Dortmund</td><td class="rl">Media server setup &amp; operator — video-sound installation with Area Composer, commissioned by the MKK</td></tr>
-        <tr><td class="yr">2018</td><td class="pj">Pharus</td><td class="vn">Mariendom Neviges</td><td class="rl">Media server setup &amp; operator — four projectors on the 700 m² altar wall, with Area Composer</td></tr>
         <tr><td class="yr">—</td><td class="pj">Club le Panther</td><td class="vn">Frankfurt</td><td class="rl">Projection setup</td></tr>
         <tr><td class="yr">—</td><td class="pj">60hz Club</td><td class="vn">Berlin</td><td class="rl">Projection graphics &amp; technical support</td></tr>
       </tbody>
@@ -554,7 +557,7 @@
         <img class="portrait" src="assets/img/me-portrait-alt-900.jpg" alt="Black and white portrait of Emanuele Musca on a jetty by a lake" loading="lazy" width="900" height="1103">
         <p class="mono faint mt-s">Emanuele Musca — Berlin</p>
         <img class="portrait mt-m" src="assets/img/portrait-marty-900.jpg" alt="Black and white portrait, lit by a match" loading="lazy" width="900" height="1351">
-        <p class="mono faint mt-s">Photograph — Martina Giannetti</p>
+        <p class="credit">Photograph — Martina Giannetti</p>
       </div>
 
       <div class="bio rv">
@@ -618,6 +621,6 @@
   <img src="" alt="">
 </div>
 
-<script src="assets/js/main.js?v=20261122a"></script>
+<script src="assets/js/main.js?v=20261122b"></script>
 </body>
 </html>

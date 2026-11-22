@@ -107,46 +107,112 @@
     });
   }
 
-  /* ---- decode: headings resolve from random glyphs on reveal ---- */
+  /* ---- decode: headings resolve from random glyphs on reveal ----
+     Time-based (same speed on 60 Hz phones and 144 Hz monitors), replays
+     every time a heading scrolls back into view. Runs even when the OS asks
+     for reduced motion: it swaps characters, nothing moves on screen.      */
   var GLYPHS = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789#%&/\\<>[]{}=+*';
+  var SWAP_MS = 1000 / 30;             // glyphs change ~30x a second
+  function glyph() { return GLYPHS[(Math.random() * GLYPHS.length) | 0]; }
+
   function decode(el) {
-    if (el.dataset.decoded) return;
-    el.dataset.decoded = '1';
-    var target = el.textContent;
+    if (el._busy) return;
+    var target = el.dataset.text;
     var len = target.length;
     if (len > 60) return;                 // leave long strings alone
-    var frame = 0, total = 16 + len * 1.4;
+    el._busy = true;
+    var dur = (16 + len * 1.4) / 60 * 1000 * 2;   // twice the original length
+    var start = performance.now(), last = -1e9;
     el.classList.add('scrambling');
-    function tick() {
-      var progress = frame / total;
-      var settled = Math.floor(progress * len);
-      var out = '';
-      for (var i = 0; i < len; i++) {
-        var ch = target[i];
-        if (ch === ' ' || i < settled) out += ch;
-        else out += GLYPHS[(Math.random() * GLYPHS.length) | 0];
+    function tick(now) {
+      var p = (now - start) / dur;
+      if (p >= 1) {
+        el.textContent = target;
+        el.classList.remove('scrambling');
+        el._busy = false;
+        return;
       }
-      el.textContent = out;
-      frame++;
-      if (frame <= total) requestAnimationFrame(tick);
-      else { el.textContent = target; el.classList.remove('scrambling'); }
+      if (now - last >= SWAP_MS) {
+        last = now;
+        var settled = Math.floor(p * len), out = '';
+        for (var i = 0; i < len; i++) {
+          var ch = target[i];
+          out += (ch === ' ' || i < settled) ? ch : glyph();
+        }
+        el.textContent = out;
+      }
+      requestAnimationFrame(tick);
     }
     requestAnimationFrame(tick);
   }
 
   var decodables = document.querySelectorAll('[data-decode]');
-  if (decodables.length) {
-    if (reduce || !('IntersectionObserver' in window)) {
-      decodables.forEach(function (el) { el.dataset.decoded = '1'; });
-    } else {
-      var dio = new IntersectionObserver(function (entries) {
-        entries.forEach(function (e) {
-          if (e.isIntersecting) { decode(e.target); dio.unobserve(e.target); }
-        });
-      }, { rootMargin: '0px 0px -12% 0px', threshold: 0.3 });
-      decodables.forEach(function (el) { dio.observe(el); });
-    }
+  decodables.forEach(function (el) {
+    el.dataset.text = el.textContent;
+    el.setAttribute('aria-label', el.dataset.text);   // screen readers get the real word
+    el._armed = true;
+  });
+  if (decodables.length && 'IntersectionObserver' in window) {
+    var dio = new IntersectionObserver(function (entries) {
+      entries.forEach(function (e) {
+        var el = e.target;
+        if (e.isIntersecting) {
+          if (el._armed) { el._armed = false; decode(el); }
+        } else {
+          el._armed = true;                // fully left the view: replay next time
+        }
+      });
+    }, { rootMargin: '0px 0px -12% 0px', threshold: 0.3 });
+    decodables.forEach(function (el) { dio.observe(el); });
   }
+
+  /* ---- micro-glitch: every few seconds one or two characters of some
+     visible text flicker for a fraction of a second, then settle.        */
+  var MG_SKIP = 'script,style,noscript,svg,video,iframe,textarea,input,select,' +
+                '.scrambling,[aria-hidden="true"],#lb';
+  function pickTextNode() {
+    var vh = window.innerHeight, found = [];
+    var w = document.createTreeWalker(document.body, NodeFilter.SHOW_TEXT, null);
+    var n;
+    while ((n = w.nextNode())) {
+      if (n.nodeValue.replace(/\s/g, '').length < 2) continue;
+      var p = n.parentElement;
+      if (!p || p.closest(MG_SKIP)) continue;
+      var r = p.getBoundingClientRect();
+      if (r.width === 0 || r.bottom < 0 || r.top > vh) continue;
+      found.push(n);
+    }
+    return found.length ? found[(Math.random() * found.length) | 0] : null;
+  }
+
+  function microGlitch() {
+    if (document.visibilityState !== 'visible') return;
+    var sel = window.getSelection && window.getSelection();
+    if (sel && String(sel).length) return;          // never touch text being selected
+    var node = pickTextNode();
+    if (!node) return;
+    var orig = node.nodeValue, host = node.parentElement;
+    var idx = [];
+    for (var i = 0; i < orig.length; i++) if (/\S/.test(orig[i])) idx.push(i);
+    var count = Math.random() < 0.75 ? 1 : 2, pos = [];
+    while (pos.length < count && idx.length) pos.push(idx.splice((Math.random() * idx.length) | 0, 1)[0]);
+    var h0 = host.offsetHeight, swaps = 2 + ((Math.random() * 3) | 0), k = 0;
+    function swap() {
+      if (node.nodeValue !== orig && k === 0) return;   // text changed meanwhile
+      if (k >= swaps) { node.nodeValue = orig; return; }
+      var chars = orig.split('');
+      pos.forEach(function (j) { chars[j] = glyph(); });
+      node.nodeValue = chars.join('');
+      if (host.offsetHeight !== h0) { node.nodeValue = orig; return; }  // would re-wrap: abort
+      k++;
+      setTimeout(swap, 55 + Math.random() * 45);
+    }
+    swap();
+  }
+
+  (function loop() {
+    setTimeout(function () { microGlitch(); loop(); }, 2500 + Math.random() * 4500);
+  })();
 
   /* ---- current year ---- */
   var y = document.getElementById('yr');
