@@ -114,6 +114,13 @@ p:last-child{margin-bottom:0}
   font-size:clamp(26px,3.4vw,46px);
   letter-spacing:-.035em;
 }
+/* the two main tracks get bigger titles */
+#technical .sec-head h2,
+#art .sec-head h2{
+  font-size:clamp(40px,6.2vw,88px);
+  letter-spacing:-.045em;
+  line-height:1;
+}
 .sec-head .idx{
   color:var(--fg-faint);
   flex:none;
@@ -294,6 +301,11 @@ p:last-child{margin-bottom:0}
   align-items:start;
 }
 @media(max-width:860px){.two-col{grid-template-columns:1fr}}
+/* .flip: second column shown on the left on desktop (phones keep source order) */
+@media(min-width:861px){
+  .two-col.flip{grid-template-columns:minmax(0,1fr) minmax(0,1.15fr)}
+  .two-col.flip > :first-child{order:2}
+}
 
 /* ---------- capability list ---------- */
 
