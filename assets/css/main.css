@@ -1146,18 +1146,33 @@ details.fold[open] .fold-pic{display:none}
   .tool-txt{padding-bottom:18px}
 }
 
-/* About: standing photo, then the projectors photo, both in the left column on wide screens;
-   on phones the projectors photo comes after the text */
-.about-grid{grid-template-rows:auto 1fr}
-.about-standing{grid-column:1;grid-row:1}
-.about-bio{grid-column:2;grid-row:1 / span 2}
-.about-proj{grid-column:1;grid-row:2;align-self:start;margin:clamp(20px,2.4vw,32px) 0 0}
+/* About (top of the page, recruiter-first): text right, projectors photo left on wide screens;
+   on phones the text comes first and the photo after */
+.about-grid{grid-template-rows:none}
+.about-proj{grid-column:1;grid-row:1;align-self:start;margin:0}
 .about-proj img{width:100%;height:auto;display:block}
+.about-bio{grid-column:2;grid-row:1}
 @media(max-width:860px){
-  .about-grid{grid-template-rows:none}
-  .about-standing,.about-bio,.about-proj{grid-column:auto;grid-row:auto}
-  .about-proj{margin-top:8px}
+  .about-proj,.about-bio{grid-column:auto;grid-row:auto}
+  .about-proj{order:2;max-width:560px}
 }
+.bio p.about-lead{
+  color:var(--fg);
+  font-size:clamp(19px,2.1vw,27px);
+  line-height:1.34;
+  letter-spacing:-.022em;
+  max-width:32ch;
+  margin-bottom:1em;
+}
+.about-stats{
+  list-style:none;margin:34px 0 0;padding:20px 0 0;
+  display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:20px;
+  border-top:var(--rule) solid var(--line);
+}
+.about-stats b{display:block;font-size:clamp(30px,3.4vw,46px);font-weight:400;letter-spacing:-.04em;line-height:1;color:var(--fg)}
+.about-stats span{display:block;margin-top:8px;font-size:10.5px;letter-spacing:.08em;text-transform:uppercase;line-height:1.45;color:var(--fg-faint)}
+@media(max-width:600px){.about-stats{grid-template-columns:repeat(2,minmax(0,1fr));row-gap:24px}}
+.about-cta{display:flex;flex-wrap:wrap;gap:12px 28px;margin-top:30px !important}
 
 /* Contact: on wide screens the photo sits left, statement + links right;
    phones keep the reading order (text, links, photo) */
