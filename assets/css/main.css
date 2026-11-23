@@ -1147,14 +1147,14 @@ details.fold[open] .fold-pic{display:none}
 }
 
 /* About (top of the page, recruiter-first): text right, projectors photo left on wide screens;
-   on phones the text comes first and the photo after */
+   on phones the photo comes first, the text after */
 .about-grid{grid-template-rows:none}
 .about-proj{grid-column:1;grid-row:1;align-self:start;margin:0}
 .about-proj img{width:100%;height:auto;display:block}
 .about-bio{grid-column:2;grid-row:1}
 @media(max-width:860px){
   .about-proj,.about-bio{grid-column:auto;grid-row:auto}
-  .about-proj{order:2;max-width:560px}
+  .about-proj{order:-1;max-width:560px}
 }
 .bio p.about-lead{
   color:var(--fg);
