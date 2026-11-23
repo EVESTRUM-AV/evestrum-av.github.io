@@ -202,6 +202,13 @@ p:last-child{margin-bottom:0}
 @media(max-width:720px){
   .nav-links a[data-opt]{display:none}
 }
+/* phones: keep the mark, drop the wordmark so every nav link fits */
+@media(max-width:520px){
+  .brand b{display:none}
+}
+@media(max-width:350px){
+  .nav-links{gap:10px}
+}
 
 /* ---------- hero ---------- */
 
